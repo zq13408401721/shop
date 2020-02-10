@@ -15,6 +15,7 @@ import com.study.base.BaseActivity;
 import com.study.interfaces.home.HomeContract;
 import com.study.model.bean.IndexBean;
 import com.study.persenter.home.HomePersenter;
+import com.study.view.catalog.CatalogFragment;
 import com.study.view.login.LoginActivity;
 import com.study.view.home.*;
 import com.study.view.own.OwnFragment;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     HomeFragment homeFragment;
     OwnFragment ownFragment;
+    CatalogFragment catalogFragment;
     FragmentManager fragmentManager;
 
     @Override
@@ -35,26 +37,34 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         ownFragment= new OwnFragment();
+        catalogFragment = new CatalogFragment();
 
         fragmentManager = getSupportFragmentManager();
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-
-
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+                FragmentTransaction ft = fragmentManager.beginTransaction();
                 switch (menuItem.getItemId()){
                     case R.id.item_home:
-                        FragmentTransaction ft = fragmentManager.beginTransaction();
                         ft.replace(R.id.fragmentBox,homeFragment).commit();
                         break;
+                    case R.id.item_catalog:
+                        ft.replace(R.id.fragmentBox,catalogFragment).commit();
+                        break;
                     case R.id.item_own:
-                        FragmentTransaction ft1 = fragmentManager.beginTransaction();
-                        ft1.replace(R.id.fragmentBox,ownFragment).commit();
+                        ft.replace(R.id.fragmentBox,ownFragment).commit();
                         break;
                 }
                 return false;
             }
         });
+
+        initView();
+    }
+
+    private void initView(){
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.fragmentBox,homeFragment).commit();
     }
 }

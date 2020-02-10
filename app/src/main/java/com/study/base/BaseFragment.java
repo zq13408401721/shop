@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.study.R;
 import com.study.interfaces.IBaseView;
@@ -20,6 +22,7 @@ import butterknife.Unbinder;
 public abstract class BaseFragment<V extends IBaseView,P extends IPersenter> extends Fragment implements IBaseView {
 
     protected Context context;
+    protected FragmentActivity activity;
     protected P persenter;
     Unbinder unbinder;
 
@@ -28,6 +31,7 @@ public abstract class BaseFragment<V extends IBaseView,P extends IPersenter> ext
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(),null);
         context = this.getContext();
+        activity = getActivity();
         unbinder = ButterKnife.bind(this,view);
         initView(view);
         persenter = createPersenter();

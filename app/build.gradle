@@ -68,5 +68,8 @@ dependencies {
 
 
     implementation 'org.greenrobot:greendao:3.2.2'
+    
+    //竖导航
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
 
 }
