@@ -8,6 +8,7 @@ import com.study.model.bean.CategoryTabBean;
 import com.study.model.bean.IndexBean;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

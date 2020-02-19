@@ -8,6 +8,12 @@ import com.study.persenter.BasePersenter;
 import com.study.interfaces.home.HomeContract;
 import com.study.utils.RxUtils;
 
+import org.greenrobot.greendao.annotation.Index;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+
 public class HomePersenter extends BasePersenter<HomeContract.View> implements HomeContract.Persenter {
     @Override
     public void getHomeData() {
@@ -20,5 +26,30 @@ public class HomePersenter extends BasePersenter<HomeContract.View> implements H
                         mView.homeDataReturn(result);
                     }
                 }));
+
+       /* HttpManager.getMyApi().getIndexData()
+                .compose(RxUtils.<IndexBean>changeScheduler())
+                .subscribe(new Observer<IndexBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(IndexBean r) {
+                        mView.homeDataReturn(r);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });*/
+
     }
 }
